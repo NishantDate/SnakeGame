@@ -25,18 +25,9 @@ function drawSnakePart(snakePart) {
     snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
 }
 
-/* Game over Screen */
-function showGameOverCanvas() {
-    snakeboard_ctx.font = "30px Ariel";
-    snakeboard_ctx.textBaseline = 'middle';
-    snakeboard_ctx.textAlign = 'center';
-    snakeboard_ctx.textStyle = "darkblue";
-    snakeboard_ctx.fillStyle = board_background;
-    snakeboard_ctx.fillRect(0, 0, snakeboard.width, snakeboard.height);
-    // Draw a "border" around the entire canvas
-    snakeboard_ctx.strokeRect(0, 0, snakeboard.width, snakeboard.height);
-    snakeboard_ctx.fillStyle = "red";
-    snakeboard_ctx.fillText("GAME OVER!", snakeboard.width / 2, snakeboard.height / 2);
+function growSnake(){
+    // WRITE this funciton
+    console.log('Grow snake')
 }
 
 /*Function that prints the parts*/
@@ -96,7 +87,20 @@ function change_direction(event) {
         dy = 0;
     }
 }
-
+/*GAME OVER */
+/* Game over Screen */
+function showGameOverCanvas() {
+    snakeboard_ctx.font = "30px Ariel";
+    snakeboard_ctx.textBaseline = 'middle';
+    snakeboard_ctx.textAlign = 'center';
+    snakeboard_ctx.textStyle = "darkblue";
+    snakeboard_ctx.fillStyle = board_background;
+    snakeboard_ctx.fillRect(0, 0, snakeboard.width, snakeboard.height);
+    // Draw a "border" around the entire canvas
+    snakeboard_ctx.strokeRect(0, 0, snakeboard.width, snakeboard.height);
+    snakeboard_ctx.fillStyle = "red";
+    snakeboard_ctx.fillText("GAME OVER!", snakeboard.width / 2, snakeboard.height / 2);
+}
 function gameOver() {
     if (snake[0].x >= snakeboard.width || snake[0].x <= 0 || snake[0].y >= snakeboard.height || snake[0].y <= 0) {
         return true;
@@ -124,7 +128,6 @@ let x_food;
 let y_food;
 let start = true;
 let reDraw = true;
-
 
 function generateFoodCoords(){
     let x_ret = Math.round((Math.random() * snakeboard.width)/10) * 10;
@@ -168,6 +171,7 @@ function main() {
             
             if(foodIsEaten()|| start){
                 reDraw = true;
+                growSnake()
             }
             else{
                 reDraw = false;
